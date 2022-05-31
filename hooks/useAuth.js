@@ -20,10 +20,9 @@ const AuthContext = createContext({});
 
 const config = {
   androidClientId:
-    "463366353489-rpj8e62kefof9oaam8lbs36mumdi79sq.apps.googleusercontent.com",
+    "663205387440-p8q56jmv74q2v8g5lo6porb1nhqt03jh.apps.googleusercontent.com",
   iosClientId:
-    // hidestream
-    "463366353489-kdml80k5movt2lrcj5ik9oai61ptdq95.apps.googleusercontent.com",
+    "663205387440-4ivstdblqfnch6n5dsd2o3brk0nbdk53.apps.googleusercontent.com",
   scopes: ["profile", "email"],
   permissions: ["public_profile", "email", "gender", "location"],
 };
