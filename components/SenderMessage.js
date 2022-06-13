@@ -6,7 +6,9 @@ const SenderMessage = ({ message }) => {
   return (
     <View
       style={[
-        tw("bg-purple-600 rounded-lg rounded-tr-none px-5 py-3 mx-3 my-2"),
+        tw(
+          "bg-purple-600 rounded-lg rounded-tr-none px-5 py-3 mx-2 my-2 right-1 "
+        ),
         { alignSelf: "flex-start", marginLeft: "auto" },
       ]}
     >

@@ -90,7 +90,9 @@ function Home() {
         (snapshot) => {
           setProfiles(
             snapshot.docs
-              .filter((doc) => doc.id !== user.uid)
+              .filter(
+                (doc) => doc.id !== user.uid && doc.gender !== user.gender
+              )
               .map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
@@ -183,11 +185,11 @@ function Home() {
   };
 
   return (
-    <SafeAreaView style={tw("flex-1 relative")}>
+    <SafeAreaView style={tw("flex-1 relative pt-5")}>
       <View style={tw("items-center relative")}>
         {user && (
           <TouchableOpacity
-            onPress={logout}
+            onPress={() => navigation.navigate("Profile")}
             style={tw("absolute left-5 top-3")}
           >
             <Image
@@ -198,7 +200,7 @@ function Home() {
         )}
 
         <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
-          <Image style={tw("h-14 w-14")} source={require("../logo.png")} />
+          <Image style={tw("h-14 w-14")} source={require("../assets/D.png")} />
         </TouchableOpacity>
 
         <TouchableOpacity style={tw("absolute right-5 top-3")}>
@@ -206,7 +208,7 @@ function Home() {
             onPress={() => navigation.navigate("Chat")}
             name="chatbubbles-sharp"
             size={30}
-            color="#FF5864"
+            color="#c897f0"
           />
         </TouchableOpacity>
       </View>
@@ -248,7 +250,7 @@ function Home() {
                   <Image
                     style={tw("absolute top-0 h-full w-full rounded-xl ")}
                     source={{
-                      uri: card?.photoURL,
+                      uri: card?.image,
                     }}
                   />
                   <View
@@ -306,7 +308,9 @@ function Home() {
         <TouchableOpacity
           onPress={() => swipeRef.current.swipeLeft()}
           style={[
-            tw("items-center justify-center rounded-full w-16 h-16 bg-red-200"),
+            tw(
+              "items-center justify-center rounded-full w-16 h-16 bg-red-200 mb-5"
+            ),
           ]}
         >
           <Entypo name="cross" size={24} color="red" />
@@ -316,7 +320,7 @@ function Home() {
           onPress={() => swipeRef.current.swipeRight()}
           style={[
             tw(
-              "items-center justify-center rounded-full w-16 h-16 bg-green-200"
+              "items-center justify-center rounded-full w-16 h-16 bg-green-200 mb-5"
             ),
           ]}
         >

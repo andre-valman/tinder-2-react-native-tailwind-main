@@ -45,7 +45,7 @@ const ChatRow = ({ matchDetails }) => {
       <Image
         style={tw("rounded-full h-16 w-16 mr-4")}
         source={{
-          uri: matchedUserInfo?.photoURL,
+          uri: matchedUserInfo?.image,
         }}
       />
 
@@ -53,7 +53,7 @@ const ChatRow = ({ matchDetails }) => {
         <Text style={tw("text-lg font-semibold")}>
           {matchedUserInfo?.displayName}
         </Text>
-        <Text>{lastMessage || "Say Hi!"}</Text>
+        <Text>{lastMessage || "Diga Olá!"}</Text>
       </View>
     </TouchableOpacity>
   );

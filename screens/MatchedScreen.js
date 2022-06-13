@@ -21,7 +21,7 @@ const MatchedScreen = () => {
       </View>
 
       <Text style={tw("text-white text-center mt-5")}>
-        You and {userSwiped.displayName} have liked each other.
+        Você e {userSwiped.displayName} podem conversar!
       </Text>
 
       <View style={tw("flex-row justify-evenly mt-10")}>
@@ -46,7 +46,7 @@ const MatchedScreen = () => {
           navigation.navigate("Chat");
         }}
       >
-        <Text style={tw("text-center")}>Send a Message</Text>
+        <Text style={tw("text-center")}>Mande uma mensagem!</Text>
       </TouchableOpacity>
     </View>
   );

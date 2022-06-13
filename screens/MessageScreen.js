@@ -32,6 +32,7 @@ import SenderMessage from "../components/SenderMessage";
 import { db } from "../firebase";
 import useAuth from "../hooks/useAuth";
 import getMatchedUserInfo from "../lib/getMatchedUserInfo";
+import pf from "../assets/pf.png";
 
 const MessageScreen = () => {
   const navigation = useNavigation();
@@ -71,7 +72,9 @@ const MessageScreen = () => {
       timestamp: serverTimestamp(),
       userId: user.uid,
       displayName: user.displayName,
-      photoURL: matchDetails.users[user.uid].photoURL,
+      image: matchDetails.users[user.uid].image && {
+        uri: matchDetails.users[user.uid].image,
+      },
       message: input,
     });
 
@@ -79,11 +82,32 @@ const MessageScreen = () => {
   };
 
   return (
-    <SafeAreaView style={tw("flex-1")}>
+    <SafeAreaView style={tw("flex-1 mt-3")}>
       <Header
         title={getMatchedUserInfo(matchDetails.users, user.uid).displayName}
-        callEnabled={true}
       />
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("MatchProfile", {
+            matchDetails,
+          })
+        }
+        style={tw(" bg-white h-16 w-16 rounded-full mt-3 absolute right-8")}
+      >
+        {matchDetails.users ? (
+          <Image
+            source={{
+              uri: getMatchedUserInfo(matchDetails.users, user.uid)?.image,
+            }}
+            style={tw("rounded-full h-16 w-16 mr-4")}
+          />
+        ) : (
+          <Image
+            source={pf}
+            style={tw("absolute rounded-full h-16 w-16 mr-4")}
+          />
+        )}
+      </TouchableOpacity>
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -124,13 +148,13 @@ const MessageScreen = () => {
         >
           <TextInput
             style={tw("h-10 text-lg")}
-            placeholder="Send Message..."
+            placeholder="Enviar mensagem..."
             onChangeText={setInput}
             onSubmitEditing={sendMessage}
             value={input}
           />
 
-          <Button onPress={sendMessage} title="Send" color="#FF5864" />
+          <Button onPress={sendMessage} title="Enviar" color="#FF5864" />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

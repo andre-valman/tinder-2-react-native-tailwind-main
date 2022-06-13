@@ -24,7 +24,7 @@ const config = {
   iosClientId:
     "663205387440-4ivstdblqfnch6n5dsd2o3brk0nbdk53.apps.googleusercontent.com",
   scopes: ["profile", "email"],
-  permissions: ["public_profile", "email", "gender", "location"],
+  permissions: ["public_profile", "email", "gender", "location", "age"],
 };
 
 export function AuthProvider({ children }) {

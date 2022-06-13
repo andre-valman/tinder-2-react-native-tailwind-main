@@ -35,23 +35,21 @@ const ChatList = () => {
 
   const { user } = useAuth();
 
-  useEffect(
-    () =>
-      onSnapshot(
-        query(
-          collection(db, "matches"),
-          where("usersMatched", "array-contains", user.uid)
-        ),
-        (snapshot) =>
-          setMatches(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            }))
-          )
+  useEffect(() => {
+    onSnapshot(
+      query(
+        collection(db, "matches"),
+        where("usersMatched", "array-contains", user.uid)
       ),
-    [user]
-  );
+      (snapshot) =>
+        setMatches(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+        )
+    );
+  }, [user]);
 
   // matches.forEach((match) => console.log(match));
 
@@ -64,7 +62,7 @@ const ChatList = () => {
     />
   ) : (
     <View style={tw("p-5")}>
-      <Text style={tw("text-center text-lg")}>No matches at the moment 😢</Text>
+      <Text style={tw("text-center text-lg")}>Sem valentines por enquanto</Text>
     </View>
   );
 };
