@@ -25,6 +25,7 @@
     "react-native": "0.64.2",
     "react-native-confetti-cannon": "^1.5.2",
     "react-native-deck-swiper": "^2.0.5",
+    "react-native-iap": "^8.0.10",
     "react-native-image-picker": "^4.8.4",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
