@@ -27,6 +27,7 @@ import {
 } from "@firebase/firestore";
 import { db } from "../firebase";
 import generateId from "../lib/generateId";
+import { purchased } from "../services/purchase";
 
 const DUMMY_DATA = [
   {
@@ -71,6 +72,10 @@ function Home() {
 
     // THE ALGORITHM that makes it all work!
     const fetchCards = async () => {
+      const loggedInProfile = await (
+        await getDoc(doc(db, "users", user.uid))
+      ).data();
+
       const passes = await getDocs(
         collection(db, "users", user.uid, "passes")
       ).then((snapshot) => snapshot.docs.map((doc) => doc.id));
@@ -88,11 +93,12 @@ function Home() {
           where("id", "not-in", [...passedUserIds, ...swipedUserIds])
         ),
         (snapshot) => {
+          console.log(snapshot.docs.map((doc) => doc.id));
+          console.log(loggedInProfile);
           setProfiles(
             snapshot.docs
-              .filter(
-                (doc) => doc.id !== user.uid && doc.gender !== user.gender
-              )
+              .filter((doc) => doc.id !== user.uid)
+              .filter((doc) => doc.data().gender !== loggedInProfile.gender)
               .map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
