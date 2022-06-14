@@ -60,12 +60,26 @@ const MatchProfileScreen = () => {
 
   return (
     <SafeAreaView style={tw("flex-1 pt-5 bg-purple-100")}>
-      <Image
-        style={[tw(`w-24 h-36 m-4 rounded-full`), styles.cardShadow]}
-        source={{
-          uri: getMatchedUserInfo(matchDetails.users, user.uid)?.image,
-        }}
-      />
+      <View style={tw("flex-row content-center left-1")}>
+        <Image
+          style={[tw(`w-28 h-40 m-2 rounded-full `), styles.cardShadow]}
+          source={{
+            uri: getMatchedUserInfo(matchDetails.users, user.uid)?.image,
+          }}
+        />
+        <Image
+          style={[tw(`w-28 h-40 m-2 rounded-full`), styles.cardShadow]}
+          source={{
+            uri: getMatchedUserInfo(matchDetails.users, user.uid)?.image2,
+          }}
+        />
+        <Image
+          style={[tw(`w-28 h-40 m-2 rounded-full`), styles.cardShadow]}
+          source={{
+            uri: getMatchedUserInfo(matchDetails.users, user.uid)?.image3,
+          }}
+        />
+      </View>
       <View style={tw("items-center relative")}>
         <Text style={tw("text-2xl font-bold")}>
           {getMatchedUserInfo(matchDetails.users, user.uid).displayName}

@@ -276,7 +276,7 @@ function Home() {
                     styles.cardShadow,
                   ]}
                 >
-                  <Text style={tw("font-bold pb-5")}>No more profiles</Text>
+                  <Text style={tw("font-bold pb-5")}>Sem mais usuarios</Text>
 
                   <Image
                     style={tw("h-20 w-full")}

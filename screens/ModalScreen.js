@@ -23,6 +23,8 @@ const ModalScreen = () => {
   const { user } = useAuth();
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
   const [image, setImage] = useState(null);
+  const [image2, setImage2] = useState(null);
+  const [image3, setImage3] = useState(null);
   const [gender, setGender] = useState(null);
   const [job, setJob] = useState(null);
   const [age, setAge] = useState(null);
@@ -92,6 +94,7 @@ const ModalScreen = () => {
       const img = await fetch(result.uri);
       const bytes = await img.blob();
       await uploadBytes(imageRef, bytes);
+      setImage2(await getDownloadURL(imageRef));
     }
   };
 
@@ -118,6 +121,7 @@ const ModalScreen = () => {
       const img = await fetch(result.uri);
       const bytes = await img.blob();
       await uploadBytes(imageRef, bytes);
+      setImage3(await getDownloadURL(imageRef));
     }
   };
 
@@ -125,7 +129,15 @@ const ModalScreen = () => {
     return <Text>Permissão negada</Text>;
   }
 
-  const incompleteForm = !job || !age || !city;
+  const incompleteForm =
+    !job ||
+    !age ||
+    !city ||
+    !image ||
+    !confirmed ||
+    !church ||
+    !saint ||
+    !gender;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -190,6 +202,8 @@ const ModalScreen = () => {
       confirmed: confirmed,
       gender: gender,
       image: image,
+      image2: image2,
+      image3: image3,
       church: church,
       timestamp: serverTimestamp(),
     })
